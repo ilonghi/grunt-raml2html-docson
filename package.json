@@ -34,5 +34,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "raml2html": "^3.0.1"
+  }
 }

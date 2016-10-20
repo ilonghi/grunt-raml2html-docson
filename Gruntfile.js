@@ -31,29 +31,11 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     raml2html_docson: {
       github: {
-        destination_dir: 'tmp'
+        ramlFilePath: 'test/fixtures/github.raml',
+        destinationDir: 'tmp',
+        indexFileName: 'index.html'
       }
     },
-
-//    // Configuration to be run (and then tested).
-//    raml2html_docson: {
-//      default_options: {
-//        options: {
-//        },
-//        files: {
-//          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-//        }
-//      },
-//      custom_options: {
-//        options: {
-//          separator: ': ',
-//          punctuation: ' !!!'
-//        },
-//        files: {
-//          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-//        }
-//      }
-//    },
 
     // Unit tests.
     nodeunit: {
