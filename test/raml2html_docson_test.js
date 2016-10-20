@@ -27,6 +27,12 @@ exports.raml2html_docson = {
     // setup here if necessary
     done();
   },
+  github: function(test) {
+    test.ok(grunt.file.exists('tmp','docson','docson.js'), 'docson.js exists');
+    
+    test.done();
+  }
+  /*,
   default_options: function(test) {
     test.expect(1);
 
@@ -45,4 +51,5 @@ exports.raml2html_docson = {
 
     test.done();
   },
+  */
 };

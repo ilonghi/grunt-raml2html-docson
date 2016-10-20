@@ -8,18 +8,30 @@
 
 'use strict';
 
+var path = require('path');
+
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
   grunt.registerMultiTask('raml2html_docson', 'Grunt plugin to build html from raml using docson for rendering json-schemas', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
 
+    var that = this;
+
+    this.requiresConfig('raml2html_docson.' + this.target + '.destination_dir');
+
+    grunt.verbose.writeln('Creating destination dir ' + this.data.destination_dir);
+
+    grunt.file.mkdir(this.data.destination_dir);
+
+    grunt.file.recurse('lib/docson', function(abspath, rootdir, subdir, filename) {
+//      grunt.log.writeln(': abspath: ' + abspath);
+//      grunt.log.writeln(': rootdir: ' + rootdir);
+//      grunt.log.writeln(': subdir: ' + subdir);
+//      grunt.log.writeln(': filename: ' + filename);
+      var destpath = path.join(that.data.destination_dir, 'docson', subdir||'', filename);
+      grunt.verbose.writeln('Copying ' + abspath + ' to ' + destpath);
+      grunt.file.copy(abspath, destpath);
+    });
+    /*
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
       // Concat specified files.
@@ -45,6 +57,8 @@ module.exports = function(grunt) {
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
     });
+    */
+
   });
 
 };
